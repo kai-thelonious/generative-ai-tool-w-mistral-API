@@ -1,0 +1,75 @@
+:root {
+    --font-size: 24px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    width: 400px;
+    height: 850px;
+    background-color: grey;
+    margin-top: 100px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+}
+
+#current-note-label {
+
+
+    p {
+        font-size: var(--font-size);
+    }
+}
+
+#current-note-div {
+    height: 272px;
+    width: 272px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#current-note {
+    font-size: 128px;
+    font-weight: bold;
+}
+
+#scale {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--font-size);
+
+    #current-scale {
+        color: white;
+        font-size: var(--font-size);
+    }
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+#generate {
+    background-color: #5B5B5B;
+    border-radius: 19px;
+    font-size: var(--font-size);
+    padding: 7px 10px;
+}
+
+.start-stop {
+    display: flex;
+    gap: 50px;
+}
