@@ -13,13 +13,7 @@ const pingPong = new Tone.PingPongDelay({
 
 const filter = new Tone.Filter({
     frequency: 2000,  // Hz (lower = darker sound)
-    type: 'lowpass',   // 'lowpass', 'highpass', 'bandpass', 'notch'
-    envelope: {
-        attack: 0.005,
-        decay: 0.7,
-        sustain: 1,
-        release: 100
-    }
+    type: 'lowpass'   // 'lowpass', 'highpass', 'bandpass', 'notch'
 });
 
 // Initialize synth
@@ -40,9 +34,9 @@ reverb.toDestination()
 
 
 // Default notes
-let notes = ['C4', 'E4', 'G4', 'C5', 'E5', 'G5'];
+let notes = [];
 let index = 0;
-let scale = 'C minor'
+let scale = ''
 
 // Set the tempo
 Tone.Transport.bpm.value = 90;
@@ -79,17 +73,22 @@ document.getElementById("stop").addEventListener("click", () => {
 
 // Generate new melody with AI
 document.getElementById("generate").addEventListener("click", async () => {
+    Tone.Transport.stop();
+    index = 0
     try {
         const response = await fetch('http://localhost:3000/generate-melody');
         const data = await response.json();
-        notes = data.melodyArray; // Update the notes array
-        index = 0; // Reset the index
+        notes = data.melodyArray.melody;
+        index = 0;
 
+        // Update scale display
+        document.getElementById('current-scale').textContent = data.melodyArray.scale;
+        scale = data.melodyArray.scale;
 
-        console.log(data)
         console.log('New melody generated:', notes);
-
+        Tone.Transport.start();
     } catch (error) {
         console.error('Error generating melody:', error);
     }
 });
+
