@@ -83,6 +83,7 @@ document.getElementById("generate").addEventListener("click", async () => {
 
         // Update scale display
         document.getElementById('current-scale').textContent = data.melodyArray.scale;
+        console.log(data.melodyArray.scale)
         scale = data.melodyArray.scale;
 
         console.log('New melody generated:', notes);
